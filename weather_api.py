@@ -1,7 +1,11 @@
+import os
 import requests
 from datetime import datetime, timedelta
+from dotenv import load_dotenv
 
-API_KEY = "46511a39a7967e91af6bd9dc4452f9bb"
+load_dotenv()  # reads .env
+
+API_KEY = os.getenv("OPENWEATHER_API_KEY")
 
 
 def get_3day_climate(city):
@@ -46,7 +50,6 @@ Rain: {total_rain} mm
 -------------------
 """
 
-    # 🔥 FINAL DECISION LOGIC
     if rain_flag:
         return "❌ Not recommended to spray pesticides. Rain expected in next 3 days.\n\n" + report
     else:
